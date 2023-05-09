@@ -46,8 +46,8 @@ select_container, graph_container = st.columns([2, 3])
 with select_container:
     
     st.markdown(f"<h2 style='text-align: center; color: #cc3d55;'>Number of cars by continent and years</h2>", unsafe_allow_html=True)
-    df['year'] = pd.to_datetime(df['year'], format = '%Y')
-    df['year'] = df['year'].dt.year
+    #df['year'] = pd.to_datetime(df['year'], format = '%Y')
+    #df['year'] = df['year'].dt.year
 
     st.write("Please select the continent you want to compare")
     continents = df['continent'].unique()
@@ -57,7 +57,7 @@ with select_container:
         df = df[df['continent'].isin(selected_continent)]
 
     st.write("Please select the period of time you want to analyse")
-    st.slider('Select below', min_value=df['year'].min(), max_value=df['year'].max(), value=(df['year'].min(), df['year'].max()))
+    #year_range = st.slider('Select below', min_value=df['year'].min(), max_value=df['year'].max(), value=(df['year'].min(), df['year'].max()))
 
     #df = df[(df['year'] >= year_range[0]) & (df['year'] <= year_range[1])]
 
