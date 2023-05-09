@@ -8,13 +8,15 @@ st.set_page_config(layout="wide")
 df = pd.read_csv('https://raw.githubusercontent.com/murpi/wilddata/master/quests/cars.csv')
 df2 = df.iloc[:,:-1]
 
+
+## TITRE
 st.container()
 
 with st.container():
     st.markdown(f"<h1 style='text-align: center;'>Analyse dataset cars via Streamlit</h1>", unsafe_allow_html=True)
     st.write("")
 
-
+## GRAPHIQUE MAP DE CORRELATION AVEC TEXTE A COTE
 main_container = st.container()
 
 graph_container, text_container = main_container.columns([3, 2])
@@ -37,14 +39,15 @@ with text_container:
     st.write('cubicinches soit pouces cubes')
     st.write('hp soit la puissance du véhicule')
 
+## GRAPHIQUE EN BARRE AVEC SELECTION CONTINENT ET YEAR
 
 select_container, graph_container = st.columns([2, 3])
 
 with select_container:
     
     st.markdown(f"<h2 style='text-align: center; color: #cc3d55;'>Number of cars by continent and years</h2>", unsafe_allow_html=True)
-    df['year'] = pd.to_datetime(df['year'], format = '%Y')
-    df['year'] = df['year'].dt.year
+    #df['year'] = pd.to_datetime(df['year'], format = '%Y')
+    #df['year'] = df['year'].dt.year
 
     st.write("Please select the continent you want to compare")
     continents = df['continent'].unique()
