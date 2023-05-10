@@ -62,7 +62,7 @@ with select_container:
 
     st.write("Please select the period of time you want to analyse")
     years = df['year'].unique()
-    st.slider('Select below', min_value=years.min(), max_value=years.max(), value=(years.min(), years.max()))
+    st.slider('Select below', min_value=years.min(), max_value=years.max(), value=years.max())
 
     #df = df[(df['year'] >= year_range[0]) & (df['year'] <= year_range[1])]
 
