@@ -13,7 +13,7 @@ df2 = df.iloc[:,:-1]
 st.container()
 
 with st.container():
-    st.markdown(f"<h1 style='text-align: center;'>Analyse dataset cars via Streamlit</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align: center;'>Dataset cars Analysis via Streamlit</h1>", unsafe_allow_html=True)
     st.write("")
 
 ## GRAPHIQUE MAP DE CORRELATION AVEC TEXTE A COTE
@@ -49,21 +49,20 @@ select_container, graph_container = st.columns([2, 3])
 with select_container:
     
     st.markdown(f"<h2 style='text-align: center; color: #cc3d55;'>Number of cars by continent and years</h2>", unsafe_allow_html=True)
-    #df['year'] = pd.to_datetime(df['year'], format = '%Y')
-    #df['year'] = df['year'].dt.year
-
     st.write("Please select the continent you want to compare")
+    df['continent'] = df['continent'].str.replace('.', '')
     continents = df['continent'].unique()
     selected_continent = st.multiselect('Choose below',  continents)
 
+    
     if selected_continent:
         df = df[df['continent'].isin(selected_continent)]
+   
 
     st.write("Please select the period of time you want to analyse")
-    years = df['year'].unique()
-    year_range = st.slider('Select below', min_value=years.min(), max_value=years.max(), value=(years.min(), years.max()))
-    
-    df = df[(df['year'] >= year_range[0]) & (df['year'] <= year_range[1])]
+    years = st.slider('Select below', min_value=df['year'].min(), max_value=df['year'].max(), value=(df['year'].min(), df['year'].max()))
+    df = df.loc[(df['year'] >= years[0]) & (df['year'] <= years[1])]
+
 
 with graph_container:
     colors = {'France': 'red','US.': '#26f0c7', 'Europe.' :' #c4f026', 'Japan.': '#14e8f7'}
@@ -90,3 +89,6 @@ with graph_container:
 
     st.plotly_chart(fig)
 
+
+# cd C:\Users\steph\Desktop\Test_streamlit\Quest_cars
+# streamlit run "C:\Users\steph\Desktop\Test_streamlit\Quest_cars\streamlit_quest_cars.py"
