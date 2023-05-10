@@ -34,7 +34,7 @@ with graph_container:
     st.pyplot(fig)
 
 with text_container:
-    st.markdown(f"<h2 style='text-align: center; color: #3ae098;'>Heatmap : Correlation map/h2>", unsafe_allow_html=True)
+    st.markdown(f"<h2 style='text-align: center; color: #3ae098;'>Heatmap : Correlation map</h2>", unsafe_allow_html=True)
     st.write('mpg, ie miles per gallon')
     st.write('cubic inches, ie a measurement of the size of the chamber where fuel is burned in a car engine')
     st.write('hp, ie housepower')
