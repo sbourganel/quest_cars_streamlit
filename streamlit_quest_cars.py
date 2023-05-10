@@ -60,13 +60,14 @@ with select_container:
    
 
     st.write("Please select the period of time you want to analyse")
-    years = st.slider('Select below', min_value=int(df['year'].min()), max_value=int(df['year'].max()), value=int(df['year'].max()))
-    years = tuple(map(int, years))
-    df = df.loc[(df['year'] >= years[0]) & (df['year'] <= years[1])]
+    years_selected = st.slider('Select below', min_value=int(df['year'].min()), max_value=(int(df['year'].max()), value=(int(df_selected_region['year'].min()), int(df_selected_region['year'].max())))
+    
+    if years_selected:
+        df = df.loc[(df['year'] >= years[0]) & (df['year'] <= years[1])]
 
 
 with graph_container:
-    colors = {'France': 'red','US.': '#26f0c7', 'Europe.' :' #c4f026', 'Japan.': '#14e8f7'}
+    colors = {'France': 'red','US': '#26f0c7', 'Europe' :' #c4f026', 'Japan': '#14e8f7'}
     fig, ax = plt.subplots(figsize=(7, 5))
     fig = px.histogram(df, x='year', color='continent', barmode='group', color_discrete_map=colors)
     fig.update_layout(legend=dict(
