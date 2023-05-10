@@ -61,7 +61,8 @@ with select_container:
         df = df[df['continent'].isin(selected_continent)]
 
     st.write("Please select the period of time you want to analyse")
-    st.slider('Select below', min_value=df['year'].min(), max_value=df['year'].max(), value=(df['year'].min(), df['year'].max()))
+    years = df['year'].unique()
+    st.slider('Select below', min_value=years.min(), max_value=years.max(), value=(years.min(), years.max()))
 
     #df = df[(df['year'] >= year_range[0]) & (df['year'] <= year_range[1])]
 
