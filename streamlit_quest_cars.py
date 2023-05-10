@@ -13,7 +13,7 @@ df2 = df.iloc[:,:-1]
 st.container()
 
 with st.container():
-    st.markdown(f"<h1 style='text-align: center;'>Analyse dataset cars via Streamlit</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align: center;'>Dataset cars Analysis via Streamlit</h1>", unsafe_allow_html=True)
     st.write("")
 
 ## GRAPHIQUE MAP DE CORRELATION AVEC TEXTE A COTE
@@ -34,10 +34,13 @@ with graph_container:
     st.pyplot(fig)
 
 with text_container:
-    st.markdown(f"<h2 style='text-align: center; color: #3ae098;'>Map de corrélation</h2>", unsafe_allow_html=True)
-    st.write('mpg = miles per gallon, soit proche de la consommation du litre au 100kms')
-    st.write('cubicinches soit pouces cubes')
-    st.write('hp soit la puissance du véhicule')
+    st.markdown(f"<h2 style='text-align: center; color: #3ae098;'>Heatmap : Correlation map/h2>", unsafe_allow_html=True)
+    st.write('mpg, ie miles per gallon')
+    st.write('cubic inches, ie a measurement of the size of the chamber where fuel is burned in a car engine')
+    st.write('hp, ie housepower')
+    st.write('weightlbs, ie weight in pounds')
+    st.write('We can see a strong positive correlation between cylinders and cubic inches, house power and weightlbs')
+    st.write('Also we observe a negative correlation between mpg and the 4 criteria above')
 
 ## GRAPHIQUE EN BARRE AVEC SELECTION CONTINENT ET YEAR
 
