@@ -8,6 +8,19 @@ st.set_page_config(layout="wide")
 df = pd.read_csv('https://raw.githubusercontent.com/murpi/wilddata/master/quests/cars.csv')
 df2 = df.iloc[:,:-1]
 
+# A METTRE EN PLACE, SCRIPT DIFFERENT EN FONCTION DU MODE DE LECTURE DU USER
+# Vérifie le thème actuel de Streamlit
+#theme = st.get_theme()
+
+# Vérifie si le thème est un thème sombre
+#is_dark = theme["theme"] == "dark"
+
+# Si le thème est sombre
+#if is_dark:
+    # Exécutez ce code pour le mode sombre
+#else:
+    # Exécutez ce code pour le mode clair
+
 
 ## TITRE
 st.container()
@@ -42,7 +55,7 @@ with text_container:
     st.write('We can see a strong positive correlation between cylinders and cubic inches, house power and weightlbs')
     st.write('Also we observe a negative correlation between mpg and the 4 criteria above')
 
-## GRAPHIQUE EN BARRE AVEC SELECTION CONTINENT ET YEAR
+## GRAPHIQUE EN BARRE AVEC SELECTION CONTINENT [#ET YEAR]
 
 select_container, graph_container = st.columns([2, 3])
 
@@ -58,12 +71,12 @@ with select_container:
     if selected_continent:
         df = df[df['continent'].isin(selected_continent)]
    
-
-    st.write("Please select the period of time you want to analyse")
-    years_selected = st.slider('Select below', min_value=int(df['year'].min()), max_value=(int(df['year'].max()), value=(int(df_selected_region['year'].min()), int(df_selected_region['year'].max())))
     
-    if years_selected:
-        df = df.loc[(df['year'] >= years[0]) & (df['year'] <= years[1])]
+#    st.write("Please select the period of time you want to analyse")
+#    years = st.slider('Select below', min_value=df['year'].min(), max_value=df['year'].max(), value=(df['year'].min(), df['year'].max()))
+#    
+#   if years:
+#        df = df.loc[(df['year'] >= years[0]) & (df['year'] <= years[1])]
 
 
 with graph_container:
@@ -90,6 +103,28 @@ with graph_container:
                  dtick=1)
 
     st.plotly_chart(fig)
+
+## GRAPHIQUE EN BULLE HOUSE POWER x WEIGHT BY SIZE OF CYLINDER
+main_container2 = st.container()
+graph_container2, col2, text_container2 = main_container2.columns([2, 1, 2])
+
+with graph_container2:
+    colors = {'France': 'red','US': '#26f0c7', 'Europe' :' #c4f026', 'Japan': '#14e8f7'}
+    fig, ax = plt.subplots(figsize=(5, 3))
+    fig = px.scatter(df, x='hp', y='weightlbs', color='continent', labels={'hp': 'house power', 'weightlbs': 'weight of the vehicule'})
+    fig.update_layout({'plot_bgcolor': '#0E1117', 'paper_bgcolor': '#0E1117'})
+    fig.update_traces(marker=dict(size=10, line=dict(width=2, color='white')))
+        
+    st.plotly_chart(fig)
+
+with col2:
+    st.write('')
+
+with text_container2:
+    st.markdown(f"<h2 style='text-align: center; color: #faefa0;'>Cars distribution by house power & weitght</h2>", unsafe_allow_html=True)
+    st.write('As we can see on the scatterplot, if you like vehicle with the highest house power, you need to focus on US cars.')
+    st.write('There is a strong relation between house power and weight of the car')
+    st.write('On the other side, French and Japanese cars are less powerful and lighter than US car, regarding cars between 1971 and 1983.')
 
 
 # cd C:\Users\steph\Desktop\Test_streamlit\Quest_cars
