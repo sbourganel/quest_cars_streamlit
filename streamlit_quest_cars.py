@@ -121,7 +121,7 @@ with col2:
     st.write('')
 
 with text_container2:
-    st.markdown(f"<h2 style='text-align: center; color: #faefa0;'>Cars distribution by house power & weitght</h2>", unsafe_allow_html=True)
+    st.markdown(f"<h2 style='text-align: center; color: #faefa0;'>Cars distribution by house power & weight</h2>", unsafe_allow_html=True)
     st.write('As we can see on the scatterplot, if you like vehicle with the highest house power, you need to focus on US cars.')
     st.write('There is a strong relation between house power and weight of the car')
     st.write('On the other side, French and Japanese cars are less powerful and lighter than US car, regarding cars between 1971 and 1983.')
